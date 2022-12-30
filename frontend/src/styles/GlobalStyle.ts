@@ -5,6 +5,8 @@ import { createGlobalStyle } from "styled-components";
 const GlobalStyle = createGlobalStyle`
   html, body, #root{
     height: 100%;
+    scroll-behavior: smooth !important;
+    overflow-x: hidden;
   }
 `;
 

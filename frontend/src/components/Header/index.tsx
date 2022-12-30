@@ -3,9 +3,9 @@ import Link from "next/link";
 import { MdMenu, MdClose } from "react-icons/md";
 import { useState } from "react";
 import { FaFacebookF, FaTwitter, FaPinterestP } from "react-icons/fa";
-import { Container, ContainerProps } from "./styles";
+import { Container } from "./styles";
 
-export interface HeaderProps extends ContainerProps {}
+export interface HeaderProps {}
 
 const titleFont = Cinzel({ subsets: ["latin"] });
 
@@ -23,7 +23,7 @@ function Header({}: HeaderProps) {
           <Link href="/">Aggrandize E-Commerce</Link>
         </h1>
         <button type="button" onClick={toggle}>
-          {!isOpen ? <MdClose /> : <MdMenu />}
+          {isOpen ? <MdClose /> : <MdMenu />}
         </button>
         <div className="right">
           <nav>

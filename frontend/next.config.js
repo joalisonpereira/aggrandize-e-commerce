@@ -4,13 +4,9 @@ const nextConfig = {
   compiler: {
     styledComponents: true,
   },
-  redirects: async () => [
-    {
-      source: "/",
-      destination: "/home",
-      permanent: true,
-    },
-  ],
+  images: {
+    domains: ["i.dummyjson.com"],
+  },
 };
 
 module.exports = nextConfig;

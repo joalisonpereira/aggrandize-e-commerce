@@ -2,7 +2,7 @@ import { render } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { ThemeProvider } from "styled-components";
 import theme from "src/styles/theme";
-import Button from ".";
+import Button from "src/components/Button";
 
 describe("Button", () => {
   it("should render with text", () => {

@@ -12,6 +12,7 @@ export const Container = styled.header<ContainerProps>`
   right: 0;
   background-color: ${(props) => props.theme.colors.basic};
   z-index: 999;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   > div {
     width: 100%;
     height: ${(props) => props.theme.metrics.headerHeight}px;
@@ -23,6 +24,7 @@ export const Container = styled.header<ContainerProps>`
     font-weight: 700;
     margin: 0;
     padding: 0;
+    text-align: center;
     a {
       color: ${(props) => props.theme.colors.text};
       text-decoration: none;
@@ -55,7 +57,7 @@ export const Container = styled.header<ContainerProps>`
           font-weight: 600;
           font-size: 1rem;
           color: ${(props) => props.theme.colors.text};
-          transition: all 0.3s;
+          transition: all ${(props) => props.theme.metrics.baseTransition}s;
           :hover {
             color: ${(props) => props.theme.colors.primary};
           }
@@ -83,7 +85,7 @@ export const Container = styled.header<ContainerProps>`
         height: 40px;
         svg {
           color: ${(props) => props.theme.colors.text};
-          transition: all 0.3s;
+          transition: all ${(props) => props.theme.metrics.baseTransition}s;
           font-size: 14px;
         }
         :hover svg {
@@ -125,7 +127,7 @@ export const Container = styled.header<ContainerProps>`
       left: 0;
       bottom: 0;
       ${(props) =>
-        props.isOpen &&
+        !props.isOpen &&
         css`
           width: 0;
           opacity: 0.5;

@@ -1,7 +1,7 @@
 import { render } from "@testing-library/react";
 import { ThemeProvider } from "styled-components";
 import theme from "src/styles/theme";
-import Layout from ".";
+import Layout from "src/components/Layout";
 
 describe("Layout", () => {
   it("should render with children content", () => {

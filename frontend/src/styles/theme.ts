@@ -6,6 +6,7 @@ const theme = {
   },
   metrics: {
     headerHeight: 100,
+    baseTransition: 0.3,
     safeMargin: 8,
     sm: 576,
     md: 768,

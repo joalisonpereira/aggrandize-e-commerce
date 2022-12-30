@@ -11,6 +11,7 @@ function Layout({ children }: LayoutProps) {
     <Container>
       <Header />
       {children}
+      <footer>Copyright © 2022 Todos os direitos reservados</footer>
     </Container>
   );
 }

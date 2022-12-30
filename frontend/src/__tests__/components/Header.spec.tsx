@@ -1,7 +1,7 @@
 import { render } from "@testing-library/react";
 import { ThemeProvider } from "styled-components";
 import theme from "src/styles/theme";
-import Header from ".";
+import Header from "../../components/Header";
 
 describe("Header", () => {
   it("should render with title", () => {
