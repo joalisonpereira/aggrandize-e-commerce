@@ -2,7 +2,7 @@ import { render } from "@testing-library/react";
 import { ThemeProvider } from "styled-components";
 import theme from "src/styles/theme";
 import ProductItem from "src/components/ProductItem";
-import { generateMockProduct } from "src/utils";
+import { generateMockProduct } from "src/__tests__/test-utils";
 
 describe("ProductItem", () => {
   it("should render with title", () => {

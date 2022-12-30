@@ -2,7 +2,7 @@ import { render } from "@testing-library/react";
 import Home, { getServerSideProps, HomeProps } from "src/pages";
 import theme from "src/styles/theme";
 import { ThemeProvider } from "styled-components";
-import { generateMockProduct } from "src/utils";
+import { generateMockProduct } from "src/__tests__/test-utils";
 import { GetServerSidePropsContext } from "next";
 import { ParsedUrlQuery } from "querystring";
 

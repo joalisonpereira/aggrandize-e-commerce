@@ -23,12 +23,12 @@ export default {
   testRegex: ".*\\.spec\\.ts$",
 
   testPathIgnorePatterns: [
-    "<rootDir>/src/__tests__/utils.ts",
+    "<rootDir>/src/__tests__/test-utils.ts",
     "<rootDir>/node_modules/*",
   ],
 
   coveragePathIgnorePatterns: [
-    "<rootDir>/src/__tests__/utils.ts",
+    "<rootDir>/src/__tests__/test-utils.ts",
     "<rootDir>/node_modules/*",
   ],
 };

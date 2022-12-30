@@ -1,7 +1,7 @@
 import { mockRequest, mockResponse } from "mock-req-res";
 import ProductsController from "src/controllers/products.controller";
 import dummyJsonService from "src/services/dummy-json.service";
-import { generateMockProduct } from "src/__tests__/utils";
+import { generateMockProduct } from "src/__tests__/test-utils";
 
 describe("Controllers/Products", () => {
   const controller = new ProductsController();
