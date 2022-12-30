@@ -26,7 +26,11 @@ function ProductItem({ item, onFavorite, isFavorited }: ProductItemProps) {
         height={METRICS.height}
         alt={item.title}
       />
-      <button onClick={() => onFavorite(item.id)} className="star">
+      <button
+        onClick={() => onFavorite(item.id)}
+        className="star"
+        data-testid="star-btn"
+      >
         <FaStar />
       </button>
       <div className="legend">

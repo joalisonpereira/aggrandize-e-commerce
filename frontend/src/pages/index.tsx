@@ -70,10 +70,8 @@ function Home({ products }: HomeProps) {
   );
 }
 
-export const getServerSideProps: GetServerSideProps = async ({ req }) => {
-  const { data } = await api.get("/", {
-    headers: { cookie: req.headers.cookie },
-  });
+export const getServerSideProps: GetServerSideProps = async () => {
+  const { data } = await api.get("/");
 
   return { props: { products: chunk(data, 3) } };
 };
