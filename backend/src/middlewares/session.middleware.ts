@@ -5,14 +5,15 @@ import { SESSION_KEY } from "src/common/constants";
 
 const RedisStore = connectRedis(session);
 
-const redisClient = createClient({ legacyMode: true });
+const url =
+  process.env.NODE_ENV === "production" ? "redis://redis:6379" : undefined;
+
+const redisClient = createClient({ url });
 
 redisClient.connect().catch(console.error);
 
-const host = process.env.NODE_ENV === "production" ? "redis" : undefined;
-
 const sessionMiddleware = session({
-  store: new RedisStore({ client: redisClient, host }),
+  store: new RedisStore({ client: redisClient }),
   saveUninitialized: false,
   secret: SESSION_KEY,
   resave: false,
