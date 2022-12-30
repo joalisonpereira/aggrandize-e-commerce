@@ -2,21 +2,25 @@ import request from "supertest";
 import app from "src/server";
 
 describe("Get products", () => {
-  it("should create a new post", async () => {
-    const res = await request(app).get("/").send({});
+  it("should return products array", async () => {
+    const res = await request(app).get("/").send();
 
     expect(res.statusCode).toEqual(200);
 
     expect(res.body).toBeDefined();
 
-    expect(res.body[0]).toHaveProperty("id");
+    expect(Array.isArray(res.body)).toBe(true);
 
-    expect(res.body[0]).toHaveProperty("thumbnail");
+    if (res.body.length > 0) {
+      expect(res.body[0]).toHaveProperty("id");
 
-    expect(res.body[0]).toHaveProperty("title");
+      expect(res.body[0]).toHaveProperty("thumbnail");
 
-    expect(res.body[0]).toHaveProperty("price");
+      expect(res.body[0]).toHaveProperty("title");
 
-    expect(res.body[0]).toHaveProperty("priceWithDiscount");
+      expect(res.body[0]).toHaveProperty("price");
+
+      expect(res.body[0]).toHaveProperty("priceWithDiscount");
+    }
   });
 });

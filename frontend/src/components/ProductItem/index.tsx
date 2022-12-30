@@ -5,29 +5,28 @@ import { Container, ContainerProps, METRICS } from "./styles";
 export interface ProductItemProps extends ContainerProps {
   item: {
     id: number;
-    title: string;
-    description: string;
-    price: number;
-    discountPercentage: number;
-    rating: number;
-    stock: number;
-    brand: string;
-    category: string;
     thumbnail: string;
-    images: string[];
+    title: string;
+    price: number;
+    category: string;
+    discountPercentage: number;
+    stock: number;
+    priceWithDiscount: number;
   };
+  onFavorite: (id: number) => void;
+  isFavorited: boolean;
 }
 
-function ProductItem({ item }: ProductItemProps) {
+function ProductItem({ item, onFavorite, isFavorited }: ProductItemProps) {
   return (
-    <Container>
+    <Container isFavorited={isFavorited}>
       <Image
         src={item.thumbnail}
         width={METRICS.width}
         height={METRICS.height}
         alt={item.title}
       />
-      <button className="star">
+      <button onClick={() => onFavorite(item.id)} className="star">
         <FaStar />
       </button>
       <div className="legend">

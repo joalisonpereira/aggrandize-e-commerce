@@ -1,6 +1,8 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
-export interface ContainerProps {}
+export interface ContainerProps {
+  isFavorited: boolean;
+}
 
 export const METRICS = { width: 260, height: 400 };
 
@@ -37,6 +39,12 @@ export const Container = styled.div<ContainerProps>`
     :hover svg {
       color: gold;
     }
+
+    ${(props) =>
+      props.isFavorited &&
+      css`
+        color: gold;
+      `};
   }
   .legend {
     text-align: center;

@@ -1,0 +1,29 @@
+version: "3.9"
+
+services:
+  site:
+    build: ./frontend
+    ports:
+      - 3000:3000
+    networks:
+      - private-network
+    depends_on:
+      - api
+  api:
+    build: ./backend
+    ports:
+      - 3001:3001
+    networks:
+      - private-network
+    depends_on:
+      - redis
+  redis:
+    image: "redis:6.2.8-alpine"
+    ports:
+      - 6379:6379
+    networks:
+      - private-network
+
+networks:
+  private-network:
+    driver: bridge

@@ -1,15 +1,22 @@
 import express from "express";
-import morgan from "morgan";
 import cors from "cors";
 import routes from "./routes";
+import sessionMiddleware from "./middlewares/session.middleware";
+import morganMiddleware from "./middlewares/morgan.middleware";
+import bodyParserMiddleware from "./middlewares/body-parser.middleware";
+import corsMiddleware from "./middlewares/cors.middleware";
 
 const app = express();
 
 const PORT = 3001;
 
-app.options("*", cors());
+app.use(corsMiddleware);
 
-app.use(morgan("common"));
+app.use(morganMiddleware);
+
+app.use(sessionMiddleware);
+
+app.use(bodyParserMiddleware);
 
 app.use(routes);
 

@@ -23,7 +23,7 @@ class ProductsController {
 
     const { data } = await dummyJsonService.get<{ products: Product[] }>(
       "/products",
-      { params: { ...req.query, select: fields.join(",") } }
+      { params: { ...req.query, select: fields.join(","), limit: 1000 } }
     );
 
     //Filter by category and stock rules
@@ -40,17 +40,37 @@ class ProductsController {
         MAX_DISCOUNT_PERCENTAGE
       );
 
-      const discountDecimal = +Calc.divide(discountValue, 100);
+      const discountRate = +Calc.divide(discountValue, 100);
 
-      const finalDiscount = +Calc.multi(item.price, discountDecimal);
+      const discountPrice = +Calc.multi(item.price, discountRate);
 
       return {
         ...item,
-        priceWithDiscount: +Calc.sub(item.price, finalDiscount),
+        priceWithDiscount: +Calc.sub(item.price, discountPrice),
+        discountPercentage: discountValue,
       };
     });
 
     return res.send(products);
+  }
+
+  async favorites(req: Request, res: Response) {
+    return res.send(req.session.favorites ?? []);
+  }
+
+  async putFavorite(req: Request, res: Response) {
+    const { favoriteId } = req.body;
+
+    req.session.favorites = [
+      ...(req.session.favorites ?? []),
+      Number(favoriteId),
+    ];
+
+    req.session.favorites = Array.from(new Set(req.session?.favorites));
+
+    console.log(req.session.favorites);
+
+    return res.status(204).send();
   }
 }
 
