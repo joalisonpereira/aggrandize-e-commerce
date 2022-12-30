@@ -22,8 +22,12 @@ function Header({}: HeaderProps) {
         <h1 className={titleFont.className}>
           <Link href="/">Aggrandize E-Commerce</Link>
         </h1>
-        <button type="button" onClick={toggle}>
-          {isOpen ? <MdClose /> : <MdMenu />}
+        <button type="button" onClick={toggle} data-testid="burguer-btn">
+          {isOpen ? (
+            <MdClose data-testid="burguer-icon-close" />
+          ) : (
+            <MdMenu data-testid="burguer-icon-open" />
+          )}
         </button>
         <div className="right">
           <nav>

@@ -37,7 +37,7 @@ export const Container = styled.section<ContainerProps>`
     }
   }
   section.products {
-    padding: ${(props) => props.theme.metrics.safeMargin * 6}px 0;
+    margin-top: ${(props) => props.theme.metrics.safeMargin * 6}px;
     h1 {
       color: ${(props) => props.theme.colors.text};
       font-size: 3rem;
