@@ -11,7 +11,7 @@ export function generateMockNormalizedProduct(size: number) {
       title: faker.name.firstName(),
       price: Number(faker.random.numeric()),
       discountPercentage: Number(faker.random.numeric()),
-      category: PRODUCT_CATEGORIES.homeDecoration,
+      category: PRODUCT_CATEGORIES[0],
       thumbnail: "https://i.dummyjson.com/data/products/1/thumbnail.jpg",
       priceWithDiscount: Number(faker.random.numeric()),
     });
@@ -33,7 +33,7 @@ export function generateMockProduct(size: number) {
       rating: Number(faker.random.numeric()),
       stock: Number(faker.random.numeric()),
       brand: faker.name.firstName(),
-      category: PRODUCT_CATEGORIES.automotive,
+      category: PRODUCT_CATEGORIES[2],
       thumbnail: "https://i.dummyjson.com/data/products/1/thumbnail.jpg",
       images: [
         "https://i.dummyjson.com/data/products/1/1.jpg",

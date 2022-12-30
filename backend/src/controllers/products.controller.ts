@@ -2,7 +2,11 @@ import { Request, Response } from "express";
 import dummyJsonService from "src/services/dummy-json.service";
 import * as Calc from "numeral-calc";
 import { Product } from "src/common/types";
-import { PRODUCT_CATEGORIES } from "src/common/constants";
+import {
+  MAX_DISCOUNT_PERCENTAGE,
+  MIN_STOCK_COUNT,
+  PRODUCT_CATEGORIES,
+} from "src/common/constants";
 
 class ProductsController {
   async index(req: Request, res: Response) {
@@ -14,6 +18,7 @@ class ProductsController {
       "rate",
       "category",
       "discountPercentage",
+      "stock",
     ];
 
     const { data } = await dummyJsonService.get<{ products: Product[] }>(
@@ -21,20 +26,27 @@ class ProductsController {
       { params: { ...req.query, select: fields.join(",") } }
     );
 
-    let products = data.products;
+    //Filter by category and stock rules
+    let products = data.products.filter(
+      (item) =>
+        PRODUCT_CATEGORIES.includes(item.category) &&
+        item.stock >= MIN_STOCK_COUNT
+    );
 
-    // .filter((item) =>
-    //   [PRODUCT_CATEGORIES.mensShirts].includes(item.category)
-    // );
+    //Calc discount
+    products = products.map((item) => {
+      const discountValue = Math.min(
+        item.discountPercentage,
+        MAX_DISCOUNT_PERCENTAGE
+      );
 
-    products = data.products.map((item) => {
-      const discountRate = +Calc.divide(item.discountPercentage, 100);
+      const discountDecimal = +Calc.divide(discountValue, 100);
 
-      const discountValue = +Calc.multi(item.price, discountRate);
+      const finalDiscount = +Calc.multi(item.price, discountDecimal);
 
       return {
         ...item,
-        priceWithDiscount: +Calc.sub(item.price, discountValue),
+        priceWithDiscount: +Calc.sub(item.price, finalDiscount),
       };
     });
 

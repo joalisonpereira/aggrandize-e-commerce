@@ -1,24 +1,16 @@
-import { ProductType } from "./types";
+export const PRODUCT_CATEGORIES = [
+  "womens-dresses",
+  "womens-shoes",
+  "mens-shirts",
+  "mens-shoes",
+  "mens-watches",
+  "womens-watches",
+  "womens-bags",
+  "womens-jewellery",
+] as const;
 
-export const PRODUCT_CATEGORIES: { [key: string]: ProductType } = {
-  smartphones: "smartphones",
-  laptops: "laptops",
-  fragrances: "fragrances",
-  skincare: "skincare",
-  groceries: "groceries",
-  homeDecoration: "home-decoration",
-  furniture: "furniture",
-  tops: "tops",
-  womensDresses: "womens-dresses",
-  womensShoes: "womens-shoes",
-  mensShirts: "mens-shirts",
-  mensShoes: "mens-shoes",
-  mensWatches: "mens-watches",
-  womensWatches: "womens-watches",
-  womensBags: "womens-bags",
-  womensJewellery: "womens-jewellery",
-  sunglasses: "sunglasses",
-  automotive: "automotive",
-  motorcycle: "motorcycle",
-  lighting: "lighting",
-};
+export const DUMMY_JSON_API_URL = "https://dummyjson.com";
+
+export const MAX_DISCOUNT_PERCENTAGE = 30;
+
+export const MIN_STOCK_COUNT = 30;

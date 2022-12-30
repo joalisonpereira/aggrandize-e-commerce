@@ -1,10 +1,13 @@
 import express from "express";
 import morgan from "morgan";
+import cors from "cors";
 import routes from "./routes";
 
 const app = express();
 
 const PORT = 3001;
+
+app.options("*", cors());
 
 app.use(morgan("common"));
 

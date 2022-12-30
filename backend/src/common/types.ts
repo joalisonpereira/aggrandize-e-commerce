@@ -1,4 +1,4 @@
-import { PRODUCT_CATEGORIES } from "./constants";
+import { PRODUCT_CATEGORIES } from "src/common/constants";
 
 export interface Product {
   id: number;
@@ -14,27 +14,7 @@ export interface Product {
   images: string[];
 }
 
-export type ProductType =
-  | "smartphones"
-  | "laptops"
-  | "fragrances"
-  | "skincare"
-  | "groceries"
-  | "home-decoration"
-  | "furniture"
-  | "tops"
-  | "womens-dresses"
-  | "womens-shoes"
-  | "mens-shirts"
-  | "mens-shoes"
-  | "mens-watches"
-  | "womens-watches"
-  | "womens-bags"
-  | "womens-jewellery"
-  | "sunglasses"
-  | "automotive"
-  | "motorcycle"
-  | "lighting";
+export type ProductType = typeof PRODUCT_CATEGORIES[number];
 
 export type NormalizedProduct = Pick<
   Product,
