@@ -18,5 +18,11 @@ export type ProductType = typeof PRODUCT_CATEGORIES[number];
 
 export type NormalizedProduct = Pick<
   Product,
-  "id" | "thumbnail" | "title" | "price" | "category" | "discountPercentage"
+  | "id"
+  | "thumbnail"
+  | "title"
+  | "price"
+  | "category"
+  | "discountPercentage"
+  | "rating"
 > & { priceWithDiscount: number };

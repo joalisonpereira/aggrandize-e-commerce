@@ -57,14 +57,23 @@ export const Container = styled.div<ContainerProps>`
     p {
       margin: 0;
       padding: 0;
-      margin-top: ${(props) => props.theme.metrics.safeMargin * 2}px;
     }
     h3 {
       font-size: 1.3rem;
       font-weight: 500;
+      margin-top: ${(props) => props.theme.metrics.safeMargin * 2}px;
     }
-    p {
+    .original {
+      margin-top: ${(props) => props.theme.metrics.safeMargin}px;
+      text-decoration: line-through;
+    }
+    .discount {
+      margin-top: ${(props) => props.theme.metrics.safeMargin}px;
       margin-bottom: ${(props) => props.theme.metrics.safeMargin * 2}px;
+      span {
+        font-weight: 600;
+        font-size: 120%;
+      }
     }
   }
 `;

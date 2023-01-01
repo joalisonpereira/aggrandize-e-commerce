@@ -19,6 +19,7 @@ class ProductsController {
       "category",
       "discountPercentage",
       "stock",
+      "rating",
     ];
 
     const { data } = await dummyJsonService.get<{ products: Product[] }>(

@@ -14,6 +14,7 @@ export function generateMockNormalizedProduct(size: number) {
       category: PRODUCT_CATEGORIES[0],
       thumbnail: "https://i.dummyjson.com/data/products/1/thumbnail.jpg",
       priceWithDiscount: Number(faker.random.numeric()),
+      rating: Math.min(5, Number(faker.random.numeric(1))),
     });
   }
 
