@@ -7,6 +7,6 @@ export default (app: Application) =>
     cors({
       credentials: true,
       methods: ["GET", "POST", "DELETE"],
-      origin: Env.get("APP_URL"),
+      origin: Env.get("FRONT_URL", "http://localhost:4000"),
     })
   );

@@ -1,4 +1,6 @@
-import "src/config/dotenv";
+import dotEnv from "dotenv";
+dotEnv.config();
+
 import express from "express";
 import routes from "./routes";
 import sessionMiddleware from "./middlewares/session.middleware";
@@ -20,8 +22,8 @@ sessionMiddleware(app);
 app.use(routes);
 
 if (process.env.NODE_ENV !== "testing") {
-  app.listen(Env.get("PORT"), () => {
-    console.log(`[START] Server running on port ${Env.get("PORT")} 🤖`);
+  app.listen(Env.get("PORT", 4000), () => {
+    console.log(`[START] Server running on port ${Env.get("PORT", 4000)} 🤖`);
   });
 }
 

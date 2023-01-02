@@ -8,7 +8,7 @@ const RedisStore = connectRedis(session);
 
 const redisClient = createClient({
   legacyMode: true,
-  url: Env.get("REDIS_URL"),
+  url: Env.get("REDIS_URL", ""),
 });
 
 redisClient.connect().catch(console.error);
@@ -18,7 +18,7 @@ export default (app: Application) =>
     session({
       store: new RedisStore({ client: redisClient }),
       saveUninitialized: true,
-      secret: Env.get("SESSION_KEY"),
+      secret: Env.get("SESSION_KEY", "1234"),
       resave: false,
     })
   );

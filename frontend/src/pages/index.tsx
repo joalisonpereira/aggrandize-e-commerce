@@ -16,9 +16,13 @@ function Home({ products }: HomeProps) {
 
   useEffect(() => {
     (async () => {
-      const { data } = await api.get("/favorites");
+      try {
+        const { data } = await api.get("/favorites");
 
-      setFavorites(data);
+        setFavorites(data);
+      } catch (error: any) {
+        // Continue
+      }
     })();
   }, []);
 

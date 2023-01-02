@@ -1,10 +1,10 @@
 class Env {
-  static get(key: string, defaultValue: string = ""): string {
+  static get(key: string, defaultValue: string | number = "") {
     if (process.env[key]) {
       return String(process.env[key]);
     }
 
-    return defaultValue;
+    return String(defaultValue);
   }
 }
 

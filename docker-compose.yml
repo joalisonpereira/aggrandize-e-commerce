@@ -7,12 +7,15 @@ services:
       - 3000:3000
     networks:
       - private-network
+    environment:
+      - NEXT_PUBLIC_API_URL=http://host.docker.internal:4000
     depends_on:
-      - api
+      api:
+        condition: service_completed_successfully
   api:
     build: ./backend
     ports:
-      - 3001:3001
+      - 4000:4000
     networks:
       - private-network
     depends_on:
