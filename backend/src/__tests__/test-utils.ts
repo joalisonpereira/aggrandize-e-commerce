@@ -48,3 +48,7 @@ export function generateMockProduct(size: number) {
 
   return products;
 }
+
+export function generateArrayNumbersMock(size: number) {
+  return new Array(size).fill(null).map(() => faker.random.numeric());
+}

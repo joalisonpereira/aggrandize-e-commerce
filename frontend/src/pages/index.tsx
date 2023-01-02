@@ -1,6 +1,6 @@
-import { GetServerSideProps } from "next";
+import { GetStaticProps } from "next";
 import Head from "next/head";
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Layout from "src/components/Layout";
 import ProductItem, { ProductItemProps } from "src/components/ProductItem";
 import api from "src/services/api";
@@ -14,24 +14,24 @@ export interface HomeProps {
 function Home({ products }: HomeProps) {
   const [favorites, setFavorites] = useState<number[]>([]);
 
-  const fetchFavorites = useCallback(async () => {
-    try {
+  useEffect(() => {
+    (async () => {
       const { data } = await api.get("/favorites");
 
       setFavorites(data);
-    } catch (error: any) {
-      //Continue
-    }
+    })();
   }, []);
 
-  useEffect(() => {
-    fetchFavorites();
-  }, [fetchFavorites]);
+  async function toggleFavorite(id: number) {
+    if (!favorites.includes(id)) {
+      const { data } = await api.post<number[]>("/favorites", { id });
 
-  async function favorite(id: number) {
-    await api.post("/favorites", { favoriteId: id });
+      setFavorites(data);
+    } else {
+      const { data } = await api.delete<number[]>(`/favorites/${id}`);
 
-    await fetchFavorites();
+      setFavorites(data);
+    }
   }
 
   return (
@@ -56,7 +56,7 @@ function Home({ products }: HomeProps) {
                   <div className="col-12 col-md-4" key={item.id}>
                     <ProductItem
                       item={item}
-                      onFavorite={favorite}
+                      onFavorite={toggleFavorite}
                       isFavorited={favorites.includes(item.id)}
                     />
                   </div>
@@ -70,10 +70,10 @@ function Home({ products }: HomeProps) {
   );
 }
 
-export const getServerSideProps: GetServerSideProps = async () => {
+export const getStaticProps: GetStaticProps = async () => {
   const { data } = await api.get("/");
 
-  return { props: { products: chunk(data, 3) } };
+  return { props: { products: chunk(data, 3) }, revalidate: 30000 };
 };
 
 export default Home;

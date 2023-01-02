@@ -9,8 +9,6 @@ export const PRODUCT_CATEGORIES = [
   "womens-jewellery",
 ] as const;
 
-export const SESSION_KEY = "cVH8gR8yXfm72EXydRdcrD0fxqKRQfF4ObJAV37RcN2lKXAw";
-
 export const DUMMY_JSON_API_URL = "https://dummyjson.com";
 
 export const MAX_DISCOUNT_PERCENTAGE = 15;
