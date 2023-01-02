@@ -2,8 +2,8 @@
 
 ## Frontend
 
-[Frontend](https://github.com/joalisonpereira/aggrandize-e-commerce/tree/master/frontend)
+[Link](https://github.com/joalisonpereira/aggrandize-e-commerce/tree/master/frontend)
 
 ## Backend
 
-[Backend](https://github.com/joalisonpereira/aggrandize-e-commerce/tree/master/frontend)
+[Link](https://github.com/joalisonpereira/aggrandize-e-commerce/tree/master/backend)
