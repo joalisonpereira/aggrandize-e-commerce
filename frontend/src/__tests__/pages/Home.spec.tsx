@@ -1,4 +1,4 @@
-import { getByTestId, render } from "@testing-library/react";
+import { render } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import Home, { getStaticProps, HomeProps } from "src/pages";
 import theme from "src/styles/theme";
@@ -7,8 +7,11 @@ import { generateMockProduct } from "src/__tests__/test-utils";
 import { GetStaticPropsContext } from "next";
 import { ParsedUrlQuery } from "querystring";
 import api from "src/services/api";
+import apiRoutes from "src/services/apiRoutes";
 
-jest.mock("axios", () => ({ create: jest.fn(() => ({})) }));
+jest.mock("axios", () => ({
+  create: jest.fn(() => ({})),
+}));
 
 describe("Home", () => {
   it("should render page with title", async () => {
@@ -25,6 +28,8 @@ describe("Home", () => {
     const context = {
       params: {} as ParsedUrlQuery,
     };
+
+    apiRoutes.get = jest.fn().mockResolvedValue({ data: [] });
 
     api.get = jest.fn().mockResolvedValue({ data: generateMockProduct(10) });
 
@@ -44,9 +49,9 @@ describe("Home", () => {
   it("should mark product as favorite", async () => {
     const products = generateMockProduct(3);
 
-    api.get = jest.fn();
+    apiRoutes.get = jest.fn().mockResolvedValue({ data: [] });
 
-    api.post = jest
+    apiRoutes.post = jest
       .fn()
       .mockResolvedValue({ data: products.map((item) => item.id) });
 
@@ -58,19 +63,19 @@ describe("Home", () => {
 
     await userEvent.click(getAllByTestId("star-btn")[0]);
 
-    expect(api.post).toHaveBeenCalledTimes(1);
+    expect(apiRoutes.post).toHaveBeenCalledTimes(1);
   });
 
   it("should unmark product as favorite", async () => {
     const products = generateMockProduct(3);
 
-    api.get = jest.fn().mockResolvedValue({ data: [] });
+    apiRoutes.get = jest.fn().mockResolvedValue({ data: [] });
 
-    api.post = jest
+    apiRoutes.post = jest
       .fn()
       .mockResolvedValue({ data: products.map((item) => item.id) });
 
-    api.delete = jest
+    apiRoutes.delete = jest
       .fn()
       .mockResolvedValue({ data: products.map((item) => item.id) });
 
@@ -84,8 +89,8 @@ describe("Home", () => {
 
     await userEvent.click(getAllByTestId("star-btn")[0]);
 
-    expect(api.post).toHaveBeenCalledTimes(1);
+    expect(apiRoutes.post).toHaveBeenCalledTimes(1);
 
-    expect(api.delete).toHaveBeenCalledTimes(1);
+    expect(apiRoutes.delete).toHaveBeenCalledTimes(1);
   });
 });

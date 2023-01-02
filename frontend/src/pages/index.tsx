@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Layout from "src/components/Layout";
 import ProductItem, { ProductItemProps } from "src/components/ProductItem";
 import api from "src/services/api";
+import apiRoutes from "src/services/apiRoutes";
 import { Container, HeroButton } from "src/styles/pages/home";
 import { chunk } from "src/utils";
 
@@ -17,7 +18,7 @@ function Home({ products }: HomeProps) {
   useEffect(() => {
     (async () => {
       try {
-        const { data } = await api.get("/favorites");
+        const { data } = await apiRoutes.get(`/api/favorites`);
 
         setFavorites(data);
       } catch (error: any) {
@@ -28,11 +29,13 @@ function Home({ products }: HomeProps) {
 
   async function toggleFavorite(id: number) {
     if (!favorites.includes(id)) {
-      const { data } = await api.post<number[]>("/favorites", { id });
+      const { data } = await apiRoutes.post<number[]>(`/api/favorites`, {
+        id,
+      });
 
       setFavorites(data);
     } else {
-      const { data } = await api.delete<number[]>(`/favorites/${id}`);
+      const { data } = await apiRoutes.delete<number[]>(`/api/favorites/${id}`);
 
       setFavorites(data);
     }

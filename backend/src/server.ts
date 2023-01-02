@@ -3,7 +3,6 @@ dotEnv.config();
 
 import express from "express";
 import routes from "./routes";
-import sessionMiddleware from "./middlewares/session.middleware";
 import morganMiddleware from "./middlewares/morgan.middleware";
 import corsMiddleware from "./middlewares/cors.middleware";
 import parserMiddleware from "./middlewares/parser.middleware";
@@ -16,8 +15,6 @@ corsMiddleware(app);
 morganMiddleware(app);
 
 parserMiddleware(app);
-
-sessionMiddleware(app);
 
 app.use(routes);
 

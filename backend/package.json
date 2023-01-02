@@ -22,7 +22,6 @@
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
-    "express-session": "^1.17.3",
     "morgan": "^1.10.0",
     "numeral-calc": "^1.0.9",
     "redis": "^4.5.1"
@@ -37,7 +36,6 @@
     "@types/connect-redis": "^0.0.19",
     "@types/cors": "^2.8.13",
     "@types/express": "^4.17.15",
-    "@types/express-session": "^1.17.5",
     "@types/jest": "^29.2.4",
     "@types/mock-req-res": "^1.1.3",
     "@types/morgan": "^1.9.3",
