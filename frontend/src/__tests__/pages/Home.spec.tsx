@@ -1,17 +1,14 @@
-import { render } from "@testing-library/react";
-import Home, { getServerSideProps, HomeProps } from "src/pages";
+import { getByTestId, render } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
+import Home, { getStaticProps, HomeProps } from "src/pages";
 import theme from "src/styles/theme";
 import { ThemeProvider } from "styled-components";
 import { generateMockProduct } from "src/__tests__/test-utils";
-import { GetServerSidePropsContext } from "next";
+import { GetStaticPropsContext } from "next";
 import { ParsedUrlQuery } from "querystring";
 import api from "src/services/api";
 
-global.fetch = jest.fn(() =>
-  Promise.resolve({
-    json: () => Promise.resolve({ products: generateMockProduct(10) }),
-  })
-) as any;
+jest.mock("axios", () => ({ create: jest.fn(() => ({})) }));
 
 describe("Home", () => {
   it("should render page with title", async () => {
@@ -31,9 +28,9 @@ describe("Home", () => {
 
     api.get = jest.fn().mockResolvedValue({ data: generateMockProduct(10) });
 
-    const data = (await getServerSideProps(
-      context as GetServerSidePropsContext
-    )) as { props: HomeProps };
+    const data = (await getStaticProps(context as GetStaticPropsContext)) as {
+      props: HomeProps;
+    };
 
     expect(data.props.products).toBeDefined();
 
@@ -42,5 +39,53 @@ describe("Home", () => {
     expect(data.props.products[0][0].title).toBeDefined();
 
     expect(data.props.products.flat().length).toEqual(10);
+  });
+
+  it("should mark product as favorite", async () => {
+    const products = generateMockProduct(3);
+
+    api.get = jest.fn();
+
+    api.post = jest
+      .fn()
+      .mockResolvedValue({ data: products.map((item) => item.id) });
+
+    const { getAllByTestId } = render(
+      <ThemeProvider theme={theme}>
+        <Home products={[products]} />
+      </ThemeProvider>
+    );
+
+    await userEvent.click(getAllByTestId("star-btn")[0]);
+
+    expect(api.post).toHaveBeenCalledTimes(1);
+  });
+
+  it("should unmark product as favorite", async () => {
+    const products = generateMockProduct(3);
+
+    api.get = jest.fn().mockResolvedValue({ data: [] });
+
+    api.post = jest
+      .fn()
+      .mockResolvedValue({ data: products.map((item) => item.id) });
+
+    api.delete = jest
+      .fn()
+      .mockResolvedValue({ data: products.map((item) => item.id) });
+
+    const { getAllByTestId } = render(
+      <ThemeProvider theme={theme}>
+        <Home products={[products]} />
+      </ThemeProvider>
+    );
+
+    await userEvent.click(getAllByTestId("star-btn")[0]);
+
+    await userEvent.click(getAllByTestId("star-btn")[0]);
+
+    expect(api.post).toHaveBeenCalledTimes(1);
+
+    expect(api.delete).toHaveBeenCalledTimes(1);
   });
 });

@@ -8,7 +8,7 @@ $ npm install
 
 ## Environment variables
 
-You can use environment variables by declaring an `.env` file. (Read .env.example)
+You can use environment variables by declaring an `.env` file. (Read `.env.example`)
 
 ## Running
 

@@ -14,6 +14,8 @@ const customJestConfig = {
   modulePaths: ["src"],
 
   testPathIgnorePatterns: ["<rootDir>/src/__tests__/test-utils.ts"],
+
+  coverageReporters: ["json-summary", "text", "lcov"],
 };
 
 module.exports = createJestConfig(customJestConfig);
