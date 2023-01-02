@@ -31,4 +31,6 @@ export default {
     "<rootDir>/src/__tests__/test-utils.ts",
     "<rootDir>/node_modules/*",
   ],
+
+  coverageReporters: ["json-summary", "text", "lcov"],
 };

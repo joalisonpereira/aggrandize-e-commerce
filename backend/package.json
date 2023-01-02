@@ -7,6 +7,7 @@
     "test": "jest --watch",
     "test:ci": "jest --ci",
     "test:coverage": "jest --coverage",
+    "test:badges": "npm run test:coverage && jest-coverage-badges && mv ./coverage/badge* ./docs/",
     "build": "babel src --extensions \".js,.ts\" --out-dir dist --copy-files --no-copy-ignored",
     "start": "node dist/server.js",
     "dev": "npx tsnd -r tsconfig-paths/register --respawn --transpile-only --ignore-watch node_modules --no-notify src/server.ts"
@@ -21,6 +22,7 @@
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "express-session": "^1.17.3",
+    "jest-coverage-badges": "^1.1.2",
     "morgan": "^1.10.0",
     "numeral-calc": "^1.0.9",
     "redis": "^4.5.1"

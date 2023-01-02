@@ -2,7 +2,7 @@ import { mockRequest, mockResponse } from "mock-req-res";
 import FavoritesController from "src/controllers/favorites.controller";
 import { generateArrayNumbersMock } from "src/__tests__/test-utils";
 
-describe("Controllers/Products", () => {
+describe("Controllers/Favorites", () => {
   const controller = new FavoritesController();
 
   afterEach(() => {
