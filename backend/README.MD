@@ -1,4 +1,4 @@
-# Backend ![](./docs/badge-statements.svg)![](./docs/badge-functions.svg)![](./docs/badge-lines.svg)![](./docs/badge-branches.svg)
+# Backend ![](./docs/badge-statements.svg) ![](./docs/badge-functions.svg) ![](./docs/badge-lines.svg) ![](./docs/badge-branches.svg)
 
 ## Installing
 
