@@ -1,5 +1,4 @@
 import cors from "cors";
+import { Application } from "express";
 
-const corsMiddleware = cors();
-
-export default corsMiddleware;
+export default (app: Application) => app.use(cors());

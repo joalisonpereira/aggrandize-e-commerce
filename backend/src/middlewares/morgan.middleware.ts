@@ -1,5 +1,4 @@
+import { Application } from "express";
 import morgan from "morgan";
 
-const morganMiddleware = morgan("common");
-
-export default morganMiddleware;
+export default (app: Application) => app.use(morgan("common"));
