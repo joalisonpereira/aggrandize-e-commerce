@@ -1,7 +1,7 @@
 import request from "supertest";
 import app from "src/server";
 
-describe("Get products", () => {
+describe("E2E/Products", () => {
   it("should return products array", async () => {
     const res = await request(app).get("/").send();
 
