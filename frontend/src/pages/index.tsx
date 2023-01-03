@@ -77,7 +77,10 @@ function Home({ products }: HomeProps) {
 export const getStaticProps: GetStaticProps = async () => {
   const { data } = await api.get("/");
 
-  return { props: { products: chunk(data, 3) }, revalidate: 30000 };
+  return {
+    props: { products: chunk(data, 3) },
+    revalidate: 30, //30s
+  };
 };
 
 export default Home;
