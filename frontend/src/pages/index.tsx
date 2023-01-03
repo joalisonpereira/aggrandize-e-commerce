@@ -82,7 +82,7 @@ export const getStaticProps: GetStaticProps = async () => {
 
   return {
     props: { products: chunk(data, 3) },
-    revalidate: 30000, //30s
+    revalidate: 30, //30s
   };
 };
 
